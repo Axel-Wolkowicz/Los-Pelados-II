@@ -14,9 +14,12 @@ function enviarProductos(){
     return productos;
 }
 function enviarPedido(producto, sabores, nombre){
+    let pedidos = JSON.parse(fs.readFileSync("../data/pedidos.json", "utf-8"));
+    if (!Array.isArray(pedidos)) pedidos = [];
     let pedido = {producto: producto, sabores: sabores, nombre: nombre};
-    pedido = JSON.stringify(pedido, null, 2);
-    fs.writeFileSync("../data/pedidos.json", pedido);
+    pedidos.push(pedido);
+    let pedidosJSON = JSON.stringify(pedidos, null, 2);
+    fs.writeFileSync("../data/pedidos.json", pedidosJSON);
     return {ok:true};
 }
 subscribeGETEvent("sabores", enviarSabores);

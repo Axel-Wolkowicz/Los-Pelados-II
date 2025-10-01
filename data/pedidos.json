@@ -1,9 +1,43 @@
-{
-  "producto": {
-    "producto": "cucurucho",
-    "sabores": [
-      "Chocolate"
-    ],
-    "nombre": "Axel Wolkowicz"
+[
+  {
+    "producto": {
+      "producto": "cucurucho",
+      "sabores": [
+        "Chocolate Amargo"
+      ],
+      "nombre": "Axel Wolkowicz"
+    }
+  },
+  {
+    "producto": {
+      "producto": "cucurucho",
+      "sabores": [
+        "Chocolate Blanco",
+        "Dulce de Leche con Nuez"
+      ],
+      "nombre": "Bruno Ferro"
+    }
+  },
+  {
+    "producto": {
+      "producto": "1 kilo",
+      "sabores": [
+        "Chocolate Blanco",
+        "Mascarpone",
+        "Crema Irlandesa",
+        "Mousse de Limón"
+      ],
+      "nombre": "Axel Wolkowicz"
+    }
+  },
+  {
+    "producto": {
+      "producto": "1/4 kilo",
+      "sabores": [
+        "Mantecol",
+        "Marroc"
+      ],
+      "nombre": "Marcos"
+    }
   }
-}
+]
