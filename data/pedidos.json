@@ -1,1 +1,9 @@
-[]
+{
+  "producto": {
+    "producto": "cucurucho",
+    "sabores": [
+      "Chocolate"
+    ],
+    "nombre": "Axel Wolkowicz"
+  }
+}
