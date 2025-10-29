@@ -8,6 +8,8 @@ const hacerPedido = document.getElementById("hacerPedido");
 const popup = document.getElementById("popup");
 let productosDisponibles;
 let saboresSeleccionados = [];
+let agregarProducto = document.getElementById("agregarProducto");
+let productosAComprar = []
 
 popup.querySelector(".button").addEventListener("click", function () {
   popup.close();
@@ -85,7 +87,7 @@ function enviarPedido() {
   let nombre = nombreInput.value;
   let restantes = parseInt(saboresRestantes.innerText);
   if (producto !== "" && nombre !== "" && restantes === 0) {
-    postEvent("pedido", { producto, sabores, nombre }, (response) => {
+    postEvent("pedido", { productosAComprar, nombre }, (response) => {
       if (response.ok) {
         popup.querySelector(".content").textContent =
           "Pedido enviado correctamente";
@@ -108,6 +110,24 @@ saboresContainer.addEventListener("click", clickSabor);
 productoSelect.addEventListener("change", actualizarCantGustos);
 
 hacerPedido.addEventListener("click", enviarPedido);
+
+agregarProducto.addEventListener("click", ()=>{
+  let producto = productoSelect.value;
+  let sabores = saboresSeleccionados;
+  let restantes = parseInt(saboresRestantes.innerText);
+
+  if (producto && sabores && restantes === 0) {
+    productosAComprar.push({
+      producto: producto,
+      sabores: sabores
+    });
+
+    productoSelect.value = "";
+    cantGustosSelect.value = "";
+  }
+  limpiarPedido();
+});
+
 
 getEvent("sabores", (sabores) => {
   for (let i = 0; i < sabores.length; i++) {

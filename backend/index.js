@@ -13,14 +13,23 @@ function enviarProductos(){
     let productos = JSON.parse(fs.readFileSync("../data/productos.json", "utf-8"));
     return productos;
 }
-function enviarPedido(producto, sabores, nombre){
-    let pedidos = JSON.parse(fs.readFileSync("../data/pedidos.json", "utf-8"));
-    if (!Array.isArray(pedidos)) pedidos = [];
-    let pedido = {producto: producto, sabores: sabores, nombre: nombre};
-    pedidos.push(pedido);
-    let pedidosJSON = JSON.stringify(pedidos, null, 2);
-    fs.writeFileSync("../data/pedidos.json", pedidosJSON);
-    return {ok:true};
+
+
+function enviarPedido(data){
+    let pedidos;
+  try {
+    const { productosAComprar, nombre } = data;
+    if (fs.existsSync("../data/pedidos.json")) {
+        pedidos = JSON.parse(fs.readFileSync("../data/pedidos.json", "utf-8"));
+    } else {
+      pedidos = [];
+    }
+    pedidos.push(data);
+    fs.writeFileSync("../data/pedidos.json", JSON.stringify(pedidos, null, 2));
+    return { ok: true };
+  } catch {
+    return { ok: false };
+  }
 }
 subscribeGETEvent("sabores", enviarSabores);
 subscribeGETEvent("productos", enviarProductos);
